@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-    # No need to use actions/checkout, see: https://github.com/marketplace/actions/build-and-push-docker-images#git-context
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -29,4 +31,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ejjvandelaar/tick-frontend:latest
+          tags: docker.io/ejjvandelaar/tick-frontend:latest
+          context: .
