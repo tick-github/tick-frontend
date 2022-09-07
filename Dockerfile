@@ -1,6 +1,4 @@
 # From the official Node Docker account
-# https://github.com/nodejs/docker-node/blob/946fe17cd1ca7a3a5741667c9df606b6e83e2d2d/18/alpine3.15/Dockerfile
-
 FROM alpine:3.15
 
 ENV NODE_VERSION 18.8.0
