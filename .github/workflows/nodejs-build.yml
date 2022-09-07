@@ -18,6 +18,8 @@ jobs:
         node-version: [14.x, 16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+    # Special thanks to Cory Rylan from https://coryrylan.com/blog/building-angular-cli-projects-with-github-actions for providing the answer to Chrome usage in the GitHub CLI
+
     steps:
     - uses: actions/checkout@v3
     
