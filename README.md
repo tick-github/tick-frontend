@@ -1,6 +1,6 @@
 # Tick!
 ## Your day at a glance!
-[![License](https://img.shields.io/badge/license-MIT-brightgreen?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen?style=for-the-badge)](LICENSE) [![build status](https://github.com/code-syl/tick-frontend/workflows/Build/badge.svg)](https://github.com/code-syl/tick-frontend/actions)
 
 *Tick!* is a web application that is aiming to give the student a quick summary of their day, including weather, appointments and the like. This repository hosts the Angular/NodeJs frontend.
 
