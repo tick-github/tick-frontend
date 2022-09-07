@@ -21,12 +21,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: cd ./tick-frontend # move into the project folder
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: cd ./tick-frontend # move into the project folder
+    - run: npm install
+    - run: npm update
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
