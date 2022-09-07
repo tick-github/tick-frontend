@@ -8,7 +8,7 @@ on:
       - completed
 
 jobs:
-  build:
+  docker_build:
   if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # Docker is part of Ubuntu
