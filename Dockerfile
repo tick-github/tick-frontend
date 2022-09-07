@@ -1,11 +1,10 @@
-FROM node:latest as build-step
-RUN mkdir -p /app
+# 1
+FROM node:latest as node
 WORKDIR /app
-COPY package*.json /app
-RUN npm install
-COPY . /app
+COPY . .
+RUN npm i
 RUN npm run build --prod
 
-FROM nginx:latest
-COPY --from=build-step /app/dist/tick-frontend /usr/share/nginx/html
-EXPOSE 4200:80
+# 2
+FROM nginx:alpine
+COPY --from=node /app/dist/tick-frontend /usr/share/nginx/html
