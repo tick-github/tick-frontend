@@ -9,14 +9,10 @@ on:
 
 jobs:
   docker_build:
-  if: ${{ github.event.workflow_run.conclusion == 'success' }}
-
-    # Docker is part of Ubuntu
     runs-on: ubuntu-latest
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
     # No need to use actions/checkout, see: https://github.com/marketplace/actions/build-and-push-docker-images#git-context
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
