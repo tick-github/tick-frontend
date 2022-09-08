@@ -1,5 +1,3 @@
-# Special thanks to @BrightRan over at https://github.com/orgs/community/discussions/26238 
-
 name: Docker Image Building and Pushing to DockerHub
 on:
   workflow_run:
@@ -11,26 +9,16 @@ jobs:
   docker_build:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    steps:
-      
+    
+    steps:      
       - name: Checkout
         uses: actions/checkout@v3
-        
-      - name: Get latest version of project
-      - uses: oprypin/find-latest-tag@v1
-        with:
-          repository: code-syl/tick-frontend  # The repository to scan.
-          #releases-only: true 
-        id: versioning  # The step ID to refer to later.
 
-      - run: echo "The current version is ${{ steps.versioning.outputs.tag }}"
-    
-
-      - uses: mr-smithers-excellent/docker-build-push@v5
-        name: Build & Push Docker image
+      - name: Build & Push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5        
         with:
           image: ejjvandelaar/tick-frontend
           registry: docker.io
-          tags: ${{ steps.versioning.outputs.tag }}
+          #tags: ${{ steps.versioning.outputs.tag }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }} 
