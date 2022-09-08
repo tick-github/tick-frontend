@@ -1,4 +1,4 @@
-# Tick! 
+# Tick!
 ## Your day at a glance!
 [![License](https://img.shields.io/badge/license-MIT-brightgreen?style=for-the-badge&color=011910)](LICENSE) ![angular](https://img.shields.io/badge/-Angular-red?logo=Angular&logoColor=white&style=for-the-badge&color=cc0000) ![node build status](https://img.shields.io/github/workflow/status/code-syl/tick-frontend/Node.js%20CI%20Building?label=Node%20build&logo=Node.js&logoColor=white&style=for-the-badge) ![docker build status](https://img.shields.io/github/workflow/status/code-syl/tick-frontend/Docker%20Image%20Building%20and%20Pushing%20to%20DockerHub?label=Docker%20build&logo=docker&logoColor=white&style=for-the-badge)  
 
