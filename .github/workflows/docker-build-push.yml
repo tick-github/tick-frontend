@@ -23,12 +23,6 @@ jobs:
     
       - name: Checkout
         uses: actions/checkout@v3
-      
-      - name: Get Latest Tag
-        id: previous-tag
-        uses: WyriHaximus/github-action-get-previous-tag@v1
-        with:
-          fallback: 0.0.0
 
       - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & Push Docker image
