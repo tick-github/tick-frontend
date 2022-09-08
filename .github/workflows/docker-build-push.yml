@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      
+      - name: Checkout
+        uses: actions/checkout@v3
+        
       - name: Get latest version of project
       - uses: oprypin/find-latest-tag@v1
         with:
@@ -21,8 +25,6 @@ jobs:
 
       - run: echo "The current version is ${{ steps.versioning.outputs.tag }}"
     
-      - name: Checkout
-        uses: actions/checkout@v3
 
       - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & Push Docker image
