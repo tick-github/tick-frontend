@@ -20,5 +20,6 @@ jobs:
         with:
           image: ejjvandelaar/tick-frontend
           registry: docker.io
+          tags: ${{ github.ref_name }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }} 
