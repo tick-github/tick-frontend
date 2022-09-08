@@ -14,12 +14,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        
+      - name: Get Latest Tag
+        id: previous-tag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+        with:
+          fallback: latest
 
       - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & Push Docker image
         with:
           image: ejjvandelaar/tick-frontend
           registry: docker.io
-          tags: ${{ github.ref_name }}
+          tags: ${{ steps.previous-tag.outputs.tag }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }} 
