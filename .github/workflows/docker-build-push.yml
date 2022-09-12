@@ -19,6 +19,5 @@ jobs:
         with:
           image: ejjvandelaar/tick-frontend
           registry: docker.io
-          #tags: ${{ steps.versioning.outputs.tag }}
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }} 
