@@ -42,7 +42,8 @@ jobs:
         npm run build:ci
         
     # versioning
-    - uses: ArvindSinghRawat/Git-Automatic-Semver-Tagging@main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: phish108/autotag-action@1.1.51
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN}}
+        with-v: true
 
