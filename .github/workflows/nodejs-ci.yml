@@ -66,6 +66,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Debug
+      run: |
+        echo "${{ steps.newtag.outputs.tag }}"
+        echo "${{ steps.newtag.outputs.new-tag }}"
+
     - uses: ncipollo/release-action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
