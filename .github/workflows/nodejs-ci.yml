@@ -40,10 +40,29 @@ jobs:
       run: |
         npm ci
         npm run build:ci
-        
-    # versioning
+
+  versioning:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - uses: actions/checkout@v3
+
     - uses: phish108/autotag-action@1.1.51
+      id: newtag
       with:
         github-token: ${{ secrets.GITHUB_TOKEN}}
         with-v: true
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [build, versioning]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - uses: ncipollo/release-action@v1
+      with:
+        token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+        tag: ${{ steps.newtag.outputs.new-tag }}
 
