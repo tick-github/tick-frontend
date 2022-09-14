@@ -54,6 +54,11 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN}}
         with-v: true
 
+    - name: Debug
+      run: |
+        echo "${{ steps.newtag.outputs.tag }}"
+        echo "${{ steps.newtag.outputs.new-tag }}"
+
   release:
     runs-on: ubuntu-latest
     needs: [build, versioning]
