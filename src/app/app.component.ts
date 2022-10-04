@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {GoogleApiService, UserInformation} from "./google-api.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tick-frontend';
+
+  userInformation?: UserInformation;
+
+  constructor(
+    private readonly googleApi: GoogleApiService
+  ) {
+    googleApi.userProfileSubject.subscribe(userInformation => {
+      this.userInformation = userInformation;
+    })
+  }
+
+  isLoggedIn(): boolean {
+    return this.googleApi.isLoggedIn();
+  }
+
+  logOut() {
+    this.googleApi.signOut();
+  }
 }
