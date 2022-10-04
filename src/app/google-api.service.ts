@@ -53,6 +53,7 @@ export class GoogleApiService {
   signOut() {
     this.oAuthService.logOut();
   }
+  
 }
 
 
