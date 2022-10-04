@@ -2,6 +2,7 @@ name: Docker Image Building and Pushing to DockerHub
 on:
   workflow_run:
     workflows: ["Node.js CI Building"]
+    branches: [main]
     types:
       - completed
 
