@@ -4,8 +4,6 @@
 name: Node.js CI Building
 
 on:
-  push:
-    branches: [ "main", "dev" ] # direct pushing should be disabled, this is just in case
   pull_request:
     branches: [ "main", "dev" ]
 
