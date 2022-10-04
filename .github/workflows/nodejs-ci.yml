@@ -48,6 +48,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
     - uses: phish108/autotag-action@1.1.51
       id: newtag
