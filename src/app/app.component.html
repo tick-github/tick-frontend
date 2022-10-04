@@ -1,1 +1,21 @@
 <router-outlet></router-outlet>
+
+<div *ngIf="isLoggedIn()">
+  <div class="container">
+    Hello {{ userInformation?.info?.given_name }}!
+  </div>
+  <div class="container">
+    Name: {{ userInformation?.info?.given_name }} {{ userInformation?.info?.family_name }}
+  </div>
+  <div class="container">
+    E-Mail: {{ userInformation?.info?.email }}
+  </div>
+  <div class="container">
+    <img src="{{ userInformation?.info?.picture }}" alt="Profile picture of {{ userInformation?.info?.family_name }}.">
+  </div>
+  <div class="container">
+    <button (click)="logOut()">
+      Log out
+    </button>
+  </div>
+</div>
