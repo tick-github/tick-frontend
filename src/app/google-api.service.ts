@@ -31,7 +31,6 @@ export class GoogleApiService {
     private readonly oAuthService: OAuthService
   ) {
     oAuthService.configure(oAuthConfig);
-    oAuthService.logoutUrl = 'https://www.google.com/accounts/Logout'
     oAuthService.loadDiscoveryDocument().then(() => {
       oAuthService.tryLoginImplicitFlow().then(() => {
         if (!oAuthService.hasValidAccessToken()) {
@@ -51,9 +50,12 @@ export class GoogleApiService {
   }
 
   signOut() {
-    this.oAuthService.logOut();
+    this.oAuthService.revokeTokenAndLogout().then(() => {
+      this.userProfileSubject.next('' as unknown as UserInformation);
+      window.location.reload();
+    });
   }
-  
+
 }
 
 
