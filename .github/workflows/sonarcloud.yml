@@ -14,7 +14,6 @@ jobs:
     steps:
       - name: Run Tests with Code Coverage
         run: |
-          npm i
           npm test
 
   sonarcloud:
