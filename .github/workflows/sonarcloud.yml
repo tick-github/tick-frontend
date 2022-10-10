@@ -8,9 +8,19 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+  tests:
+    name: Karma Tests With Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Tests with Code Coverage
+        run: |
+          npm i
+          npm test
+
   sonarcloud:
     name: SonarCloud Analysis in CI
     runs-on: ubuntu-latest
+    needs: tests
     steps:
       - uses: actions/checkout@v2
         with:
