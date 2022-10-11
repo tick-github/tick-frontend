@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {AuthConfig, OAuthService} from "angular-oauth2-oidc";
-import {lastValueFrom, Observable, of, Subject} from "rxjs";
+import {lastValueFrom, Observable, Subject} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {EmailMessage} from "./EmailMessage";
+import {EmailMessage} from "./gmail/EmailMessage";
+import {GmailMessageIdResponse} from "./gmail/GmailMessageIdResponse";
+import {GmailSingleMessageResponse} from "./gmail/GmailSingleMessageResponse";
 
 const oAuthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
@@ -49,40 +51,47 @@ export class GoogleApiService {
     })
   }
 
-  async getEmails(userId: string, maxResults: number = 10, page: number = 1): Promise<Observable<EmailMessage[]>> {
+  async getAllEmails(userId: string, maxResults: number = 10, page: number = 1): Promise<EmailMessage[]> {
     const queryParameters =
       new HttpParams()
         .append("maxResults", maxResults)
-        .append("page", page);
+        .append("page", page)
 
     let mails: EmailMessage[] = []
 
-    const idResponse = this.httpClient.get(
-      `${this.gmailBaseUrl}${userId}/messages`,
-      {params: queryParameters}
-    ) as Observable<any>
-
-    const ids = await lastValueFrom(idResponse)
-    for (const element of ids.messages) {
-      const messageResponse = this.httpClient.get(
-        `${this.gmailBaseUrl}${userId}/messages/${element.id}`
-      ) as Observable<any>
-
-      const message = await lastValueFrom(messageResponse)
-      const newMail = new EmailMessage(
-        message.payload.headers.find((header: { name: string; }) => {
-          return header.name === "Subject"
-        }).value,
-        message.payload.headers.find((header: { name: string; }) => {
-          return header.name === "From"
-        }).value,
-        message.internalDate
-      )
-
-      mails.push(newMail)
+    const ids = await this.getEmailIds(userId, queryParameters)
+    for (const element of ids) {
+      mails.push(await this.getSingleEmail(userId, element))
     }
 
-    return of<EmailMessage[]>(mails);
+    return mails
+  }
+
+  private async getEmailIds(userId: string, queryParams: HttpParams): Promise<string[]> {
+    const messageIdResponse = await lastValueFrom(this.httpClient.get(
+      `${this.gmailBaseUrl}${userId}/messages`,
+      {params: queryParams}
+    ) as Observable<GmailMessageIdResponse>)
+
+    return messageIdResponse.messages.map(function (mip) {
+      return mip.id
+    })
+  }
+
+  private async getSingleEmail(userId: string, messageId: string): Promise<EmailMessage> {
+    const messageResponse = await lastValueFrom(this.httpClient.get(
+      `${this.gmailBaseUrl}${userId}/messages/${messageId}`
+    ) as Observable<GmailSingleMessageResponse>)
+
+    return {
+      subject: messageResponse.payload.headers.find((header) => {
+        return header.name === 'Subject'
+      })!.value,
+      sender: messageResponse.payload.headers.find((header) => {
+        return header.name === 'From'
+      })!.value,
+      sentDate: messageResponse.internalDate
+    } as EmailMessage
   }
 
   isLoggedIn(): boolean {

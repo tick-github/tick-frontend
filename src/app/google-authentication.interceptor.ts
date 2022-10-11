@@ -22,15 +22,16 @@ export class GoogleAuthenticationInterceptor implements HttpInterceptor {
       'https://www.googleapis.com/calendar/v3/users/'
     ]
 
-    // exclude certain requests from modification
-    if (request.url.includes('openid-configuration') ||
-      !this.checkIfStringStartWithAnyOf(request.url, googleUrls)) {
-      return next.handle(request);
-    }
-
     // get the bearer token
     const userToken = this.authService.getAccessToken();
 
+    // exclude certain requests from modification
+    if (request.url.includes('openid-configuration') ||
+      !this.checkIfStringStartWithAnyOf(request.url, googleUrls) ||
+      !userToken) {
+      return next.handle(request);
+    }
+    
     // add the bearer token to the request header
     const modifiedRequest = request.clone({
       headers: request.headers.set('Authorization', `Bearer ${userToken}`)

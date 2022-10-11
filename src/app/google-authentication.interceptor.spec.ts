@@ -2,7 +2,7 @@ import {GoogleAuthenticationInterceptor} from "./google-authentication.intercept
 import {inject, TestBed} from "@angular/core/testing";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
-import {DateTimeProvider, OAuthLogger, OAuthService, UrlHelperService} from "angular-oauth2-oidc";
+import {OAuthService} from "angular-oauth2-oidc";
 
 class MockAuthService {
   hasValidAccessToken() {
@@ -23,10 +23,7 @@ describe('GoogleAuthenticationInterceptor', () => {
           imports: [HttpClientTestingModule],
           providers: [
             {provide: HTTP_INTERCEPTORS, useClass: GoogleAuthenticationInterceptor, multi: true},
-            {provide: OAuthService, useClass: MockAuthService},
-            UrlHelperService,
-            OAuthLogger,
-            DateTimeProvider
+            {provide: OAuthService, useClass: MockAuthService}
           ]
         }
       )
