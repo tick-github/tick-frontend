@@ -54,6 +54,8 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/coverage/
           tree
+          echo "LCOV FILE CONTENTS
+          cat /home/runner/work/tick-frontend/tick-frontend/coverage/tick-frontend/lcov.info
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
