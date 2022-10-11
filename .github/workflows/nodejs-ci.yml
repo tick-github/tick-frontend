@@ -49,7 +49,8 @@ jobs:
       - name: echoing
         run: |
           cd /home/runner/work/tick-frontend/tick-frontend
-          ng test
+          npm i
+          npm test
           tree
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
