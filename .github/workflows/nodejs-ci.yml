@@ -46,11 +46,13 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: echoing
+      - name: Rerun Tests
         run: |
           npm i
-          npm test --reporter=lcov
-          cd $GITHUB_WORKSPACE/tick-frontend/coverage/
+          npm test
+      - name: Echo Test Directory
+        run: |
+          cd $GITHUB_WORKSPACE/coverage/
           tree
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
