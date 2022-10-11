@@ -50,8 +50,8 @@ jobs:
         run: |
           npm i
           npm test --reporter=lcov
-          cd /home/runner/work/tick-frontend/tick-frontend
-          tree ./coverage
+          cd ${{ GITHUB_WORKSPACE }}/tick-frontend/coverage/
+          tree
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
