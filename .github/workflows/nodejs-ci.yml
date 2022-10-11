@@ -48,10 +48,10 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: echoing
         run: |
-          cd /home/runner/work/tick-frontend/tick-frontend
           npm i
-          npm test
-          tree
+          npm test --reporter=lcov
+          cd /home/runner/work/tick-frontend/tick-frontend
+          tree ./coverage
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
