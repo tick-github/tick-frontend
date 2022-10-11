@@ -31,10 +31,6 @@ export class GoogleAuthenticationInterceptor implements HttpInterceptor {
     // get the bearer token
     const userToken = this.authService.getAccessToken();
 
-    if (!userToken) {
-      return next.handle(request);
-    }
-
     // add the bearer token to the request header
     const modifiedRequest = request.clone({
       headers: request.headers.set('Authorization', `Bearer ${userToken}`)

@@ -37,51 +37,47 @@ describe('GoogleAuthenticationInterceptor', () => {
   describe('Intercepting HTTP requests', () => {
     it('should add auth header to request to google gmail', inject([HttpClient, HttpTestingController],
       (http: HttpClient, mock: HttpTestingController) => {
-      http.get('https://gmail.googleapis.com/gmail/v1/users/')
-        .subscribe(response => expect(response).toBeTruthy());
+        http.get('https://gmail.googleapis.com/gmail/v1/users/')
+          .subscribe(response => expect(response).toBeTruthy());
 
-      const request = mock.expectOne(req => (req.headers.has('Authorization')));
-      const token = request.request.headers.get('Authorization');
-      expect(token).toEqual('Bearer ' + mockAuthService.getAccessToken());
+        const request = mock.expectOne(req => (req.headers.has('Authorization')));
+        const token = request.request.headers.get('Authorization');
+        expect(token).toEqual('Bearer ' + mockAuthService.getAccessToken());
 
-      request.flush({data:'test'});
-      mock.verify();
-    }))
+        request.flush({data: 'test'});
+      }))
 
     it('should add auth header to request to google calendar', inject([HttpClient, HttpTestingController],
-    (http: HttpClient, mock: HttpTestingController) => {
-      http.get('https://www.googleapis.com/calendar/v3/users/')
-        .subscribe(response => expect(response).toBeTruthy());
+      (http: HttpClient, mock: HttpTestingController) => {
+        http.get('https://www.googleapis.com/calendar/v3/users/')
+          .subscribe(response => expect(response).toBeTruthy());
 
-      const request = mock.expectOne(req => (req.headers.has('Authorization')));
-      const token = request.request.headers.get('Authorization');
-      expect(token).toEqual('Bearer ' + mockAuthService.getAccessToken());
+        const request = mock.expectOne(req => (req.headers.has('Authorization')));
+        const token = request.request.headers.get('Authorization');
+        expect(token).toEqual('Bearer ' + mockAuthService.getAccessToken());
 
-      request.flush({data:'test'});
-      mock.verify();
-    }))
+        request.flush({data: 'test'});
+      }))
 
     it('should NOT add an auth header to oidc requests', inject([HttpClient, HttpTestingController],
-    (http: HttpClient, mock: HttpTestingController) => {
-      http.get('https://www.test.com/openid-configuration')
-        .subscribe(response => expect(response).toBeTruthy());
+      (http: HttpClient, mock: HttpTestingController) => {
+        http.get('https://www.test.com/openid-configuration')
+          .subscribe(response => expect(response).toBeTruthy());
 
-      const request = mock.expectOne(req => (!req.headers.has('Authorization')));
+        const request = mock.expectOne(req => (!req.headers.has('Authorization')));
 
-      request.flush({data:'test'});
-      mock.verify();
-    }))
+        request.flush({data: 'test'});
+      }))
 
     it('should NOT add an auth header to non-google requests', inject([HttpClient, HttpTestingController],
-    (http: HttpClient, mock: HttpTestingController) => {
-      http.get('https://www.example.com')
-        .subscribe(response => expect(response).toBeTruthy());
+      (http: HttpClient, mock: HttpTestingController) => {
+        http.get('https://www.example.com')
+          .subscribe(response => expect(response).toBeTruthy());
 
-      const request = mock.expectOne(req => (!req.headers.has('Authorization')));
+        const request = mock.expectOne(req => (!req.headers.has('Authorization')));
 
-      request.flush({data:'test'});
-      mock.verify();
-    }))
+        request.flush({data: 'test'});
+      }))
   })
 
   afterEach(inject([HttpTestingController], (mock: HttpTestingController) => {
