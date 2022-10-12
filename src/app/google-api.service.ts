@@ -87,13 +87,21 @@ export class GoogleApiService {
       `${this.gmailBaseUrl}${userId}/messages/${messageId}`
     ) as Observable<GmailSingleMessageResponse>)
 
+    if (!messageResponse || !messageResponse?.payload?.headers) {
+      return {
+        subject: 'Error retrieving email from server',
+        sender: 'internal',
+        sentDate: '0'
+      } as EmailMessage
+    }
+
     return {
       subject: messageResponse.payload.headers.find((header) => {
         return header.name === 'Subject'
-      })!.value,
+      })?.value ?? '\<no subject\>',
       sender: messageResponse.payload.headers.find((header) => {
         return header.name === 'From'
-      })!.value,
+      })?.value ?? '\<no sender\>',
       sentDate: messageResponse.internalDate
     } as EmailMessage
   }
