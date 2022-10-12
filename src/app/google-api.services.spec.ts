@@ -44,11 +44,15 @@ class MockAuthService {
       }
     } as UserInformation)
   }
+
+  initLoginFlow(): void {
+  }
 }
 
-describe('GoogleApiService', () => {
+describe('GoogleApiService: EMAILS', () => {
 
   let googleApiService: GoogleApiService
+  let mockAuthService: OAuthService
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -58,6 +62,7 @@ describe('GoogleApiService', () => {
         GoogleApiService
       ]
     })
+    mockAuthService = TestBed.inject(OAuthService)
     googleApiService = TestBed.inject(GoogleApiService)
   })
 
@@ -255,4 +260,102 @@ describe('GoogleApiService', () => {
         )
       }))
   })
+
+  describe('getAllEmails', () => {
+
+    it('should return all emails if emails were found', async () => {
+
+      // Arrange
+      const testEmail = {
+        subject: 'test',
+        sender: 'test',
+        sentDate: '0'
+      } as EmailMessage
+      spyOn(googleApiService, 'getEmailIds').and.returnValue(Promise.all(['test1', 'test2']))
+      spyOn(googleApiService, 'getSingleEmail').and.returnValue(Promise.resolve(testEmail))
+
+      // Act
+      const result = await googleApiService.getAllEmails('test')
+
+      // Assert
+      expect(googleApiService.getEmailIds).toHaveBeenCalledTimes(1)
+      expect(googleApiService.getSingleEmail).toHaveBeenCalledTimes(2)
+      expect(result).toBeTruthy()
+      expect(result.length).toEqual(2)
+      result.forEach((email) => {
+        expect(email).toEqual(testEmail)
+      })
+    })
+
+    it('should return empty array if no emails were found', async () => {
+
+      // Arrange
+      spyOn(googleApiService, 'getEmailIds').and.returnValue(Promise.all([]))
+      spyOn(googleApiService, 'getSingleEmail').and.callThrough()
+
+      // Act
+      const result = await googleApiService.getAllEmails('test')
+
+      // Assert
+      expect(googleApiService.getEmailIds).toHaveBeenCalledTimes(1)
+      expect(googleApiService.getSingleEmail).not.toHaveBeenCalled()
+      expect(result).toBeTruthy()
+      expect(result.length).toEqual(0)
+    })
+  })
+
+  describe('isLoggedIn', () => {
+
+    it('should return false when having invalid access token', () => {
+
+      // Arrange
+      spyOn(mockAuthService, 'hasValidAccessToken').and.returnValue(false)
+
+      // Act
+      const result = googleApiService.isLoggedIn()
+
+      // Assert
+      expect(result).toEqual(false)
+    })
+
+    it('should return true when having valid access token', () => {
+
+      // Arrange
+      spyOn(mockAuthService, 'hasValidAccessToken').and.returnValue(true)
+
+      // Act
+      const result = googleApiService.isLoggedIn()
+
+      // Assert
+      expect(result).toEqual(true)
+    })
+
+  })
+
+  describe('signOut', () => {
+
+    it('should revoke the access token', () => {
+
+      // Arrange
+      spyOn(mockAuthService, 'revokeTokenAndLogout').and.callThrough()
+      googleApiService.userProfileSubject.next({
+        info: {
+          sub: 'test',
+          email: 'test',
+          given_name: 'test',
+          family_name: 'test',
+          picture: 'test'
+        }
+      } as UserInformation)
+
+      // Act
+      googleApiService.signOut()
+
+      // Assert
+      expect(mockAuthService.revokeTokenAndLogout).toHaveBeenCalled()
+    })
+
+  })
 })
+
+

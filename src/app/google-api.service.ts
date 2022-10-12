@@ -11,7 +11,8 @@ const oAuthConfig: AuthConfig = {
   strictDiscoveryDocumentValidation: false,
   redirectUri: window.location.origin,
   clientId: '170594238961-vtcn3409ueg7lje60uc2he33v5qk3mou.apps.googleusercontent.com',
-  scope: 'openid profile email https://www.googleapis.com/auth/gmail.readonly'
+  scope: 'openid profile email https://www.googleapis.com/auth/gmail.readonly',
+  logoutUrl: 'http://localhost:4200'
 }
 
 export interface UserInformation {
@@ -44,7 +45,6 @@ export class GoogleApiService {
         } else {
           oAuthService.loadUserProfile().then((userProfile) => {
             this.userProfileSubject.next(userProfile as UserInformation);
-            console.log(userProfile);
           })
         }
       })
@@ -113,7 +113,6 @@ export class GoogleApiService {
   signOut() {
     this.oAuthService.revokeTokenAndLogout().then(() => {
       this.userProfileSubject.next('' as unknown as UserInformation);
-      window.location.reload();
     });
   }
 
