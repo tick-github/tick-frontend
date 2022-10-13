@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {GoogleApiService, UserInformation} from "./google-api.service";
-import {lastValueFrom} from "rxjs";
-import {EmailMessage} from "./EmailMessage";
+import {EmailMessage} from "./gmail/EmailMessage";
 
 @Component({
   selector: 'app-root',
@@ -36,7 +35,7 @@ export class AppComponent {
       return
 
     const userId = this.userInformation?.info?.sub
-    this.mails = await lastValueFrom(await this.googleApi.getEmails(userId, maxResults, page));
+    this.mails = await this.googleApi.getAllEmails(userId, maxResults, page);
   }
 
   toUTCDate(epoch: string) {
