@@ -11,7 +11,10 @@
     E-Mail: {{ userInformation?.info?.email }}
   </div>
   <div class="container">
-    <img src="{{ userInformation?.info?.picture }}" alt="Profile picture of {{ userInformation?.info?.family_name }}.">
+    <img src="{{ userInformation?.info?.picture }}"
+         alt="Profile picture of {{ userInformation?.info?.family_name }}."
+         referrerpolicy="no-referrer"
+    >
   </div>
   <div class="container">
     <button (click)="getEmails()">Get Emails</button>
