@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {AuthConfig, OAuthService} from "angular-oauth2-oidc";
 import {lastValueFrom, Observable, Subject} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {EmailMessage} from "./gmail/EmailMessage";
-import {GmailMessageIdResponse} from "./gmail/GmailMessageIdResponse";
-import {GmailSingleMessageResponse} from "./gmail/GmailSingleMessageResponse";
+import {EmailMessage} from "../gmail/EmailMessage";
+import {GmailMessageIdResponse} from "../gmail/GmailMessageIdResponse";
+import {GmailSingleMessageResponse} from "../gmail/GmailSingleMessageResponse";
 
 const oAuthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
