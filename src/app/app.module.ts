@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {OAuthModule} from "angular-oauth2-oidc";
-import {GoogleAuthenticationInterceptor} from "./google-authentication.interceptor";
+import {GoogleAuthenticationInterceptor} from "./interceptors/google-authentication.interceptor";
 
 @NgModule({
   declarations: [

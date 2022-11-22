@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {GoogleApiService, UserInformation} from "./google-api.service";
+import {GoogleApiService, UserInformation} from "./services/google-api.service";
 import {EmailMessage} from "./gmail/EmailMessage";
 
 @Component({
