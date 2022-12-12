@@ -1,0 +1,12 @@
+.main-container {
+  width: 60%;
+  min-height: 100vh;
+
+  background-color: pink;
+}
+
+@media (max-width: 600px) {
+  .main-container {
+    width: 100%;
+  }
+}

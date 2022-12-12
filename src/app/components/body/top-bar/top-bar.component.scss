@@ -1,0 +1,36 @@
+.top-bar {
+  width: 100%;
+  height: 3em;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 1em;
+  align-items: center;
+
+  background-color: deepskyblue;
+}
+
+span {
+  line-height: 3em;
+}
+
+.user-image {
+  height: 90%;
+  aspect-ratio: 1 / 1;
+  background-color: white;
+  border-radius: 50%;
+  margin-right: 0.5em;
+
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+}
+
+.settings-icon {
+  height: 75%;
+  aspect-ratio: 1 / 1;
+  margin-right: auto;
+  margin-left: 0.5em;
+}

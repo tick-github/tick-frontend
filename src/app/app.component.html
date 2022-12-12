@@ -1,44 +1,6 @@
 <router-outlet></router-outlet>
 
 <div *ngIf="isLoggedIn()">
-  <div class="container">
-    Hello {{ userInformation?.info?.given_name }}!
-  </div>
-  <div class="container">
-    Name: {{ userInformation?.info?.given_name }} {{ userInformation?.info?.family_name }}
-  </div>
-  <div class="container">
-    E-Mail: {{ userInformation?.info?.email }}
-  </div>
-  <div class="container">
-    <img src="{{ userInformation?.info?.picture }}"
-         alt="Profile picture of {{ userInformation?.info?.family_name }}."
-         referrerpolicy="no-referrer"
-    >
-  </div>
-  <div class="container">
-    <button (click)="getEmails()">Get Emails</button>
-  </div>
-  <div class="container w-50 m-auto pt-2 pb-2">
-    <table class="table table-striped table-bordered table-hover">
-      <caption>The last 10 emails to <strong>{{ userInformation?.info?.email }}</strong></caption>
-      <thead>
-      <th scope="col" class="w-25">Sender</th>
-      <th scope="col" class="w-50">Subject</th>
-      <th scope="col" class="w-25">Received At</th>
-      </thead>
-      <tbody>
-      <tr *ngFor="let mail of mails">
-        <td>{{ mail.sender }}</td>
-        <td>{{ mail.subject }}</td>
-        <td>{{ toUTCDate(mail.sentDate) }}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="container">
-    <button (click)="logOut()">
-      Log out
-    </button>
-  </div>
+  <app-main-container *ngIf="userInformation" [user]="userInformation"></app-main-container>
 </div>
+
