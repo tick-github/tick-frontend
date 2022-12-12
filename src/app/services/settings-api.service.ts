@@ -28,7 +28,7 @@ export class SettingsApiService {
   }
 
   async updateSettings(settings : SettingsModel) : Promise<SettingsResponse> {
-    return lastValueFrom(this.httpClient.put<SettingsResponse>(this.baseUrl, settings, this.httpOptions))
+    return await lastValueFrom(this.httpClient.put<SettingsResponse>(this.baseUrl, settings, this.httpOptions))
       .catch(data => {return data.error as SettingsResponse});
   }
 }
