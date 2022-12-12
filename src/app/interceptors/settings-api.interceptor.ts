@@ -10,8 +10,6 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class SettingsApiInterceptor implements HttpInterceptor {
 
-  constructor() {}
-
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     // gateway url for settings api
