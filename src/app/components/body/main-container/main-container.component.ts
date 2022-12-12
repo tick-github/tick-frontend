@@ -28,6 +28,7 @@ export class MainContainerComponent implements OnInit, OnChanges {
     let response: SettingsResponse = await this.settingsApi.getSettings();
     if (response.data !== null) {
       console.log("Found settings object.")
+      console.log(response.data)
       return response.data;
     }
 

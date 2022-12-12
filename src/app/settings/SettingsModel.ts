@@ -21,7 +21,7 @@ export abstract class SettingsModelBuilder {
     return {
       primaryColor: "white",
       secondaryColor: "gray",
-      tertiaryColor: "deepskyblue",
+      tertiaryColor: "black",
       locale: "nl-NL",
       weatherCity: "Eindhoven, the Netherlands"
     } as SettingsModel
