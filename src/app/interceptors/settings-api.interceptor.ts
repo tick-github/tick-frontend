@@ -25,7 +25,7 @@ export class SettingsApiInterceptor implements HttpInterceptor {
 
     const idToken : string = this.getIdTokenFromSessionStorage();
 
-    if (!idToken) {
+    if (idToken == null || idToken == "") {
       return next.handle(request);
     }
 
