@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {GoogleApiService, UserInformation} from "./services/google-api.service";
 import {SettingsModel, SettingsModelBuilder} from "./settings/SettingsModel";
 import {SettingsApiService} from "./services/settings-api.service";
+import {SettingsSessionStorageService} from "./services/settings-session-storage.service";
 
 @Component({
   selector: 'app-root',
@@ -11,12 +12,13 @@ import {SettingsApiService} from "./services/settings-api.service";
 export class AppComponent {
   title = 'tick-frontend';
 
-  userInformation?: UserInformation;
-  userSettings?: SettingsModel;
+  userInformation!: UserInformation;
+  userSettings!: SettingsModel;
 
   constructor(
     private readonly googleApi: GoogleApiService,
-    private readonly settingsApi: SettingsApiService
+    private readonly settingsApi: SettingsApiService,
+    private readonly settingsSessionStorage : SettingsSessionStorageService
   ) {
     googleApi.userProfileSubject.subscribe(userInformation => {
       this.userInformation = userInformation;
@@ -25,7 +27,7 @@ export class AppComponent {
       (successfulResponse) => {this.userSettings = successfulResponse.data as SettingsModel},
       () => {this.userSettings = SettingsModelBuilder.getDefault()}
     ).catch(() => {this.userSettings = SettingsModelBuilder.getDefault()})
-      .then(() => {sessionStorage.setItem("tick_settings", JSON.stringify(this.userSettings))})
+      .then(() => {settingsSessionStorage.setSettings(this.userSettings)})
   }
 
   isLoggedIn(): boolean {

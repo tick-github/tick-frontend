@@ -6,8 +6,7 @@
   justify-content: end;
   gap: 1em;
   align-items: center;
-
-  background-color: deepskyblue;
+  outline: 1px solid black
 }
 
 span {
@@ -17,7 +16,6 @@ span {
 .user-image {
   height: 90%;
   aspect-ratio: 1 / 1;
-  background-color: white;
   border-radius: 50%;
   margin-right: 0.5em;
 
