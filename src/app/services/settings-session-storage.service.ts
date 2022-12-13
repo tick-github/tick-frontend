@@ -7,9 +7,10 @@ import {SettingsModel, SettingsModelBuilder} from "../settings/SettingsModel";
 export class SettingsSessionStorageService {
 
   constructor() {  }
+  private readonly SETTINGS_KEY: string = "tick_settings";
 
   getSettings() : SettingsModel {
-    const storedSettings = sessionStorage.getItem("tick_settings") as string | null;
+    const storedSettings = sessionStorage.getItem(this.SETTINGS_KEY) as string | null;
     if (storedSettings == null) {
       return SettingsModelBuilder.getDefault();
     }
@@ -19,7 +20,7 @@ export class SettingsSessionStorageService {
 
   setSettings(settings: SettingsModel) {
     const settingsToBeStored = JSON.stringify(settings);
-    sessionStorage.setItem("tick_settings", settingsToBeStored);
+    sessionStorage.setItem(this.SETTINGS_KEY, settingsToBeStored);
 
     return;
   }

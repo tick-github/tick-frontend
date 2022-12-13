@@ -1,7 +1,9 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {UserInformation} from "../../../services/google-api.service";
-import {SettingsModel} from "../../../settings/SettingsModel";
+import {SettingsModel, SettingsModelBuilder} from "../../../settings/SettingsModel";
 import {SettingsSessionStorageService} from "../../../services/settings-session-storage.service";
+import {retry} from "rxjs";
+import {SettingsApiService} from "../../../services/settings-api.service";
 
 @Component({
   selector: 'app-main-container',
@@ -14,8 +16,14 @@ export class MainContainerComponent implements OnInit, OnChanges {
   userSettings: SettingsModel;
 
   constructor(
+    private readonly settingsApi: SettingsApiService,
     private readonly settingsSessionStorage: SettingsSessionStorageService
   ) {
+    settingsApi.getSettings().then(
+      (successfulResponse) => {this.userSettings = successfulResponse.data as SettingsModel},
+      () => {retry(5);}
+    ).catch(() => {this.userSettings = SettingsModelBuilder.getDefault()})
+      .then(() => {settingsSessionStorage.setSettings(this.userSettings)})
     this.userSettings = this.settingsSessionStorage.getSettings();
     console.log(this.userSettings)
   }
