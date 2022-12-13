@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MainContainerComponent } from './main-container.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {TopBarComponent} from "../top-bar/top-bar.component";
+import {UserInformation} from "../../../services/google-api.service";
 
 describe('MainContainerComponent', () => {
   let component: MainContainerComponent;
@@ -8,12 +11,22 @@ describe('MainContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainContainerComponent ]
+      declarations: [ MainContainerComponent, TopBarComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(MainContainerComponent);
     component = fixture.componentInstance;
+    component.user = {
+      info: {
+        sub: "test",
+        email: "test@test.com",
+        given_name: "Tester",
+        family_name: "McTestington",
+        picture: "https://www.example.com/"
+      }
+    } as UserInformation;
     fixture.detectChanges();
   });
 
