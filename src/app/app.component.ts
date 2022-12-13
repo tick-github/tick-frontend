@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {GoogleApiService, UserInformation} from "./services/google-api.service";
-import {EmailMessage} from "./gmail/EmailMessage";
 
 @Component({
   selector: 'app-root',
@@ -9,8 +8,6 @@ import {EmailMessage} from "./gmail/EmailMessage";
 })
 export class AppComponent {
   title = 'tick-frontend';
-
-  mails: EmailMessage[] = []
 
   userInformation?: UserInformation;
 
@@ -28,17 +25,5 @@ export class AppComponent {
 
   logOut() {
     this.googleApi.signOut();
-  }
-
-  async getEmails(maxResults: number = 10, page: number = 1) {
-    if (!this.userInformation)
-      return
-
-    const userId = this.userInformation?.info?.sub
-    this.mails = await this.googleApi.getAllEmails(userId, maxResults, page);
-  }
-
-  toUTCDate(epoch: string) {
-    return new Date(parseInt(epoch)).toLocaleString()
   }
 }

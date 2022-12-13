@@ -47,17 +47,6 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('tick-frontend');
   });
 
-  it('should have no email messages loaded at startup', () => {
-    // Arrange
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-
-    // Act
-
-    // Assert
-    expect(app.mails).toEqual([]);
-  })
-
   it('should not have a profile loaded at startup', () => {
     // Arrange
     const fixture = TestBed.createComponent(AppComponent);
