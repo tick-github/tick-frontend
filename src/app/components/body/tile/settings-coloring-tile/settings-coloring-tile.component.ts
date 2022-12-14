@@ -35,9 +35,8 @@ export class SettingsColoringTileComponent extends TileComponent implements OnIn
       } as SettingsModel)
         .then((successfulResponse) => {this.userSettings = successfulResponse.data as SettingsModel})
         .catch(() => {this.userSettings = SettingsModelBuilder.getDefault()})
-        .finally(() => {this.settingsSessionStorage.setSettings(this.userSettings)}
+        .finally(() => {this.settingsSessionStorage.setSettings(this.userSettings);window.location.reload()}
       );
-      window.location.reload();
     }
   }
 }

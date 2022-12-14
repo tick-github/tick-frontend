@@ -25,7 +25,6 @@ export class MainContainerComponent implements OnInit, OnChanges {
     ).catch(() => {this.userSettings = SettingsModelBuilder.getDefault()})
       .then(() => {settingsSessionStorage.setSettings(this.userSettings)})
     this.userSettings = this.settingsSessionStorage.getSettings();
-    console.log(this.userSettings)
   }
 
   ngOnInit(): void {
