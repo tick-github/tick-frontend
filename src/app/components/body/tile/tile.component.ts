@@ -12,7 +12,7 @@ export class TileComponent implements OnInit {
   userSettings: SettingsModel;
 
   constructor(
-    private readonly settingsSessionStorage: SettingsSessionStorageService
+    public settingsSessionStorage: SettingsSessionStorageService
   ) {
     this.userSettings = settingsSessionStorage.getSettings();
   }

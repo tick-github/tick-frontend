@@ -9,9 +9,9 @@ export interface SettingsModel {
 export abstract class SettingsModelBuilder {
   public static getDefault() : SettingsModel {
     return {
-      primaryColor: "black",
-      secondaryColor: "pink",
-      tertiaryColor: "deepskyblue",
+      primaryColor: "#000000",
+      secondaryColor: "#ffc0cb",
+      tertiaryColor: "#00bfff",
       locale: "nl-NL",
       weatherCity: "Eindhoven, the Netherlands"
     } as SettingsModel
@@ -19,9 +19,9 @@ export abstract class SettingsModelBuilder {
 
   public static getDarkDefault() : SettingsModel {
     return {
-      primaryColor: "white",
-      secondaryColor: "gray",
-      tertiaryColor: "black",
+      primaryColor: "#ffffff",
+      secondaryColor: "#808080",
+      tertiaryColor: "#000000",
       locale: "nl-NL",
       weatherCity: "Eindhoven, the Netherlands"
     } as SettingsModel

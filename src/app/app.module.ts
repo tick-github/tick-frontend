@@ -13,6 +13,7 @@ import { TileComponent } from './components/body/tile/tile.component';
 import { MainPageComponent } from './components/pages/main-page/main-page.component';
 import { SettingsPageComponent } from './components/pages/settings-page/settings-page.component';
 import { SettingsColoringTileComponent } from './components/body/tile/settings-coloring-tile/settings-coloring-tile.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SettingsColoringTileComponent } from './components/body/tile/settings-c
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+    FormsModule
   ],
   bootstrap: [AppComponent],
   providers: [
