@@ -10,13 +10,17 @@ import {SettingsApiInterceptor} from "./interceptors/settings-api.interceptor";
 import { MainContainerComponent } from './components/body/main-container/main-container.component';
 import { TopBarComponent } from './components/body/top-bar/top-bar.component';
 import { TileComponent } from './components/body/tile/tile.component';
+import { MainPageComponent } from './components/pages/main-page/main-page.component';
+import { SettingsPageComponent } from './components/pages/settings-page/settings-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainContainerComponent,
     TopBarComponent,
-    TileComponent
+    TileComponent,
+    MainPageComponent,
+    SettingsPageComponent
   ],
   imports: [
     BrowserModule,

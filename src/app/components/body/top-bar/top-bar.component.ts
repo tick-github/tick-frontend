@@ -25,8 +25,8 @@ export class TopBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async navigateToHome() {
-    await this.router.navigate(['/'])
+  async navigateTo(route: string) {
+    await this.router.navigate([route])
   }
 
   logOut() {

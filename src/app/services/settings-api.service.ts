@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {lastValueFrom} from "rxjs";
 import {SettingsModel} from "../settings/SettingsModel";
-import {SettingsResponse} from "../settings/Response";
+import {SettingsResponse} from "../settings/SettingsResponse";
 
 @Injectable({
   providedIn: 'root'

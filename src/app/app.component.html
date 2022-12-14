@@ -1,5 +1,3 @@
-<router-outlet></router-outlet>
-
 <div *ngIf="isLoggedIn(); else loggedOut">
   <app-main-container *ngIf="userInformation" [user]="userInformation"></app-main-container>
 </div>

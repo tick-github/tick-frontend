@@ -15,19 +15,6 @@
   flex-direction: column;
 }
 
-.tile-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  gap: 0.5em;
-  padding: 0.5em;
-}
-
-app-tile {
-  width: 50%;
-  height: 13em;
-}
-
 @media only screen and (max-width: 700px) {
   .main-container {
     width: 100%;
