@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TopBarComponent } from './top-bar.component';
-import {UserInformation} from "../../../services/google-api.service";
+import {GoogleApiService, UserInformation} from "../../../services/google-api.service";
+import {DateTimeProvider, OAuthLogger, OAuthService, UrlHelperService} from "angular-oauth2-oidc";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('TopBarComponent', () => {
   let component: TopBarComponent;
@@ -9,7 +11,11 @@ describe('TopBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopBarComponent ]
+      declarations: [ TopBarComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [
+        GoogleApiService, OAuthLogger, OAuthService, UrlHelperService, DateTimeProvider
+      ]
     })
     .compileComponents();
 

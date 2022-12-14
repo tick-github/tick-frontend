@@ -3,7 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainContainerComponent } from './main-container.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {TopBarComponent} from "../top-bar/top-bar.component";
-import {UserInformation} from "../../../services/google-api.service";
+import {GoogleApiService, UserInformation} from "../../../services/google-api.service";
+import {DateTimeProvider, OAuthLogger, OAuthService, UrlHelperService} from "angular-oauth2-oidc";
 
 describe('MainContainerComponent', () => {
   let component: MainContainerComponent;
@@ -12,7 +13,10 @@ describe('MainContainerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ MainContainerComponent, TopBarComponent ],
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
+      providers: [
+        GoogleApiService, OAuthLogger, OAuthService, UrlHelperService, DateTimeProvider
+      ]
     })
     .compileComponents();
 
