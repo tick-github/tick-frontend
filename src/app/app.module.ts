@@ -12,6 +12,7 @@ import { TopBarComponent } from './components/body/top-bar/top-bar.component';
 import { TileComponent } from './components/body/tile/tile.component';
 import { MainPageComponent } from './components/pages/main-page/main-page.component';
 import { SettingsPageComponent } from './components/pages/settings-page/settings-page.component';
+import { SettingsColoringTileComponent } from './components/body/tile/settings-coloring-tile/settings-coloring-tile.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SettingsPageComponent } from './components/pages/settings-page/settings
     TopBarComponent,
     TileComponent,
     MainPageComponent,
-    SettingsPageComponent
+    SettingsPageComponent,
+    SettingsColoringTileComponent
   ],
   imports: [
     BrowserModule,
