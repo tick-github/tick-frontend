@@ -4,13 +4,13 @@
   display: flex;
   flex-direction: row;
   justify-content: end;
-  gap: 1em;
   align-items: center;
   outline: 1px solid black
 }
 
 span {
   line-height: 3em;
+  margin-right: 1em;
 }
 
 .user-image {
@@ -26,9 +26,17 @@ span {
   }
 }
 
-.settings-icon {
+.icon {
   height: 75%;
   aspect-ratio: 1 / 1;
-  margin-right: auto;
+}
+
+.top-bar > .icon {
   margin-left: 0.5em;
+}
+
+.top-bar > .icon:nth-child(3) {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
 }

@@ -1,10 +1,7 @@
-<div
-  class="main-container"
-  [ngStyle]="{
-    'color':userSettings.primaryColor,
-    'background-color':userSettings.tertiaryColor
-  }"
->
-  <app-top-bar [user]="user"></app-top-bar>
-  hello world
+<div class="wrapper">
+  <div class="main-container" [ngStyle]="{'color':userSettings.primaryColor,
+  'background-color':userSettings.secondaryColor}">
+    <app-top-bar [user]="user"></app-top-bar>
+    hello world
+  </div>
 </div>

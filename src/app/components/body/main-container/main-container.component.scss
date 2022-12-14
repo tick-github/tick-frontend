@@ -1,6 +1,15 @@
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgba(black, .05);
+}
+
 .main-container {
   width: 60%;
-  min-height: 100vh;
+  min-height: 100%;
   outline: 1px solid black;
 }
 
