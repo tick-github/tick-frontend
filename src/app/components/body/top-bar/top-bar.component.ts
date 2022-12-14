@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {UserInformation} from "../../../services/google-api.service";
+import {GoogleApiService, UserInformation} from "../../../services/google-api.service";
 import {SettingsSessionStorageService} from "../../../services/settings-session-storage.service";
 import {SettingsModel} from "../../../settings/SettingsModel";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-top-bar',
@@ -14,11 +15,22 @@ export class TopBarComponent implements OnInit {
   userSettings: SettingsModel;
 
   constructor(
-    private readonly settingsSessionStorage: SettingsSessionStorageService) {
+    private readonly settingsSessionStorage: SettingsSessionStorageService,
+    private readonly router: Router,
+    private readonly googleApi: GoogleApiService
+  ) {
     this.userSettings = this.settingsSessionStorage.getSettings();
   }
 
   ngOnInit(): void {
+  }
+
+  async navigateToHome() {
+    await this.router.navigate(['/'])
+  }
+
+  logOut() {
+    this.googleApi.signOut();
   }
 
 }
