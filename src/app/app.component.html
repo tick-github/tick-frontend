@@ -1,6 +1,10 @@
 <router-outlet></router-outlet>
 
-<div *ngIf="isLoggedIn()">
+<div *ngIf="isLoggedIn(); else loggedOut">
   <app-main-container *ngIf="userInformation" [user]="userInformation"></app-main-container>
 </div>
+
+<ng-template #loggedOut>
+  You need to be logged in to view this page.
+</ng-template>
 

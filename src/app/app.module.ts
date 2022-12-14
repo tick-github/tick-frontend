@@ -9,12 +9,14 @@ import {GoogleAuthenticationInterceptor} from "./interceptors/google-authenticat
 import {SettingsApiInterceptor} from "./interceptors/settings-api.interceptor";
 import { MainContainerComponent } from './components/body/main-container/main-container.component';
 import { TopBarComponent } from './components/body/top-bar/top-bar.component';
+import { TileComponent } from './components/body/tile/tile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainContainerComponent,
-    TopBarComponent
+    TopBarComponent,
+    TileComponent
   ],
   imports: [
     BrowserModule,

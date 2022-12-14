@@ -2,6 +2,11 @@
   <div class="main-container" [ngStyle]="{'color':userSettings.primaryColor,
   'background-color':userSettings.secondaryColor}">
     <app-top-bar [user]="user"></app-top-bar>
-    hello world
+    <div class="tile-container">
+      <app-tile></app-tile>
+      <app-tile></app-tile>
+      <app-tile></app-tile>
+      <app-tile></app-tile>
+    </div>
   </div>
 </div>
