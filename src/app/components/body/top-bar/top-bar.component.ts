@@ -12,14 +12,13 @@ import {Router} from "@angular/router";
 export class TopBarComponent implements OnInit {
 
   @Input() user!: UserInformation;
-  userSettings: SettingsModel;
+  @Input() userSettings!: SettingsModel;
 
   constructor(
     private readonly settingsSessionStorage: SettingsSessionStorageService,
     private readonly router: Router,
     private readonly googleApi: GoogleApiService
   ) {
-    this.userSettings = this.settingsSessionStorage.getSettings();
   }
 
   ngOnInit(): void {
@@ -30,6 +29,7 @@ export class TopBarComponent implements OnInit {
   }
 
   logOut() {
+    this.settingsSessionStorage.clearSettings();
     this.googleApi.signOut();
   }
 

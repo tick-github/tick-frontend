@@ -24,4 +24,10 @@ export class SettingsSessionStorageService {
 
     return;
   }
+
+  clearSettings() {
+    sessionStorage.removeItem(this.SETTINGS_KEY);
+
+    return;
+  }
 }

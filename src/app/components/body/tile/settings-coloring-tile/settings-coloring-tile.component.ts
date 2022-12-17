@@ -33,9 +33,16 @@ export class SettingsColoringTileComponent extends TileComponent implements OnIn
         locale: this.userSettings.locale,
         weatherCity: this.userSettings.weatherCity
       } as SettingsModel)
-        .then((successfulResponse) => {this.userSettings = successfulResponse.data as SettingsModel})
-        .catch(() => {this.userSettings = SettingsModelBuilder.getDefault()})
-        .finally(() => {this.settingsSessionStorage.setSettings(this.userSettings);window.location.reload()}
+        .then((successfulResponse) => {
+          this.userSettings = successfulResponse.data as SettingsModel
+        })
+        .catch(() => {
+          this.userSettings = SettingsModelBuilder.getDefault()
+        })
+        .finally(() => {
+          this.settingsSessionStorage.setSettings(this.userSettings);
+          window.location.reload()
+        }
       );
     }
   }

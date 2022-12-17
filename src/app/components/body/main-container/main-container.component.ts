@@ -13,7 +13,7 @@ import {SettingsApiService} from "../../../services/settings-api.service";
 export class MainContainerComponent implements OnInit, OnChanges {
 
   @Input() user!: UserInformation;
-  userSettings: SettingsModel;
+  userSettings!: SettingsModel;
 
   constructor(
     private readonly settingsApi: SettingsApiService,
@@ -24,7 +24,6 @@ export class MainContainerComponent implements OnInit, OnChanges {
       () => {retry(5);}
     ).catch(() => {this.userSettings = SettingsModelBuilder.getDefault()})
       .then(() => {settingsSessionStorage.setSettings(this.userSettings)})
-    this.userSettings = this.settingsSessionStorage.getSettings();
   }
 
   ngOnInit(): void {
