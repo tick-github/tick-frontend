@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {TileComponent} from "../tile.component";
 import {SettingsSessionStorageService} from "../../../../services/settings-session-storage.service";
 import {SettingsApiService} from "../../../../services/settings-api.service";
-import {SettingsModel, SettingsModelBuilder} from "../../../../settings/SettingsModel";
+import {SettingsModel, SettingsModelBuilder} from "../../../../models/settings/SettingsModel";
 
 @Component({
   selector: 'app-settings-coloring-tile',
@@ -41,9 +41,12 @@ export class SettingsColoringTileComponent extends TileComponent {
         })
         .finally(() => {
           this.settingsSessionStorage.setSettings(this.userSettings);
-          window.location.reload()
-        }
-      );
+          this.reloadPage();
+        });
     }
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 }

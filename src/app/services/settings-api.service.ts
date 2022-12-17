@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {lastValueFrom} from "rxjs";
-import {SettingsModel} from "../settings/SettingsModel";
-import {SettingsResponse} from "../settings/SettingsResponse";
+import {SettingsModel} from "../models/settings/SettingsModel";
+import {SettingsResponse} from "../models/settings/SettingsResponse";
 
 @Injectable({
   providedIn: 'root'

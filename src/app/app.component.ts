@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {GoogleApiService, UserInformation} from "./services/google-api.service";
-import {SettingsModel} from "./settings/SettingsModel";
+import {SettingsModel} from "./models/settings/SettingsModel";
 
 @Component({
   selector: 'app-root',

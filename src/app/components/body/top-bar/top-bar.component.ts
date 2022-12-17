@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {GoogleApiService, UserInformation} from "../../../services/google-api.service";
 import {SettingsSessionStorageService} from "../../../services/settings-session-storage.service";
-import {SettingsModel} from "../../../settings/SettingsModel";
+import {SettingsModel} from "../../../models/settings/SettingsModel";
 import {Router} from "@angular/router";
 
 @Component({

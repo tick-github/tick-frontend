@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {UserInformation} from "../../../services/google-api.service";
-import {SettingsModel, SettingsModelBuilder} from "../../../settings/SettingsModel";
+import {SettingsModel, SettingsModelBuilder} from "../../../models/settings/SettingsModel";
 import {SettingsSessionStorageService} from "../../../services/settings-session-storage.service";
 import {retry} from "rxjs";
 import {SettingsApiService} from "../../../services/settings-api.service";

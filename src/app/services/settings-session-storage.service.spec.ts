@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { SettingsSessionStorageService } from './settings-session-storage.service';
-import {SettingsModel, SettingsModelBuilder} from "../settings/SettingsModel";
+import {SettingsModel, SettingsModelBuilder} from "../models/settings/SettingsModel";
 
 describe('SettingsSessionStorageService', () => {
   let service: SettingsSessionStorageService;
