@@ -11,7 +11,7 @@ const oAuthConfig: AuthConfig = {
   strictDiscoveryDocumentValidation: false,
   redirectUri: window.location.origin,
   clientId: '170594238961-vtcn3409ueg7lje60uc2he33v5qk3mou.apps.googleusercontent.com',
-  scope: 'openid profile email https://www.googleapis.com/auth/gmail.readonly',
+  scope: 'openid profile'/* email https://www.googleapis.com/auth/gmail.readonly'*/,
   logoutUrl: 'http://localhost:4200'
 }
 
