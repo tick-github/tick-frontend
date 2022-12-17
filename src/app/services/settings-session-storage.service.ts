@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {SettingsModel, SettingsModelBuilder} from "../settings/SettingsModel";
+import {isSettingsModel, SettingsModel, SettingsModelBuilder} from "../settings/SettingsModel";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,17 @@ export class SettingsSessionStorageService {
       return SettingsModelBuilder.getDefault();
     }
 
-    return JSON.parse(storedSettings) as SettingsModel;
+    try {
+      const parsedValue = JSON.parse(storedSettings);
+
+      if (!isSettingsModel(parsedValue)) {
+        return SettingsModelBuilder.getDefault();
+      }
+
+      return parsedValue as SettingsModel;
+    } catch {
+      return SettingsModelBuilder.getDefault();
+    }
   }
 
   setSettings(settings: SettingsModel) {

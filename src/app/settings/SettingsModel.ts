@@ -6,6 +6,14 @@ export interface SettingsModel {
   weatherCity : string
 }
 
+export function isSettingsModel(object: unknown): object is SettingsModel {
+  return Object.prototype.hasOwnProperty.call(object, "primaryColor")
+      && Object.prototype.hasOwnProperty.call(object, "secondaryColor")
+      && Object.prototype.hasOwnProperty.call(object, "tertiaryColor")
+      && Object.prototype.hasOwnProperty.call(object, "locale")
+      && Object.prototype.hasOwnProperty.call(object, "weatherCity")
+}
+
 export abstract class SettingsModelBuilder {
   public static getDefault() : SettingsModel {
     return {
