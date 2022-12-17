@@ -1,0 +1,24 @@
+<div class="tile-base"
+     [ngStyle]="{
+        'background-color':userSettings.tertiaryColor,
+        'outline':'0.5pt dotted '+userSettings.primaryColor
+     }">
+  <div class="colors-form">
+    <div class="setting-container">
+      <label for="primary">Font color:</label>
+      <input type="color" id="primary" name="primary" [(ngModel)]="primaryColor" [value]="primaryColor">
+    </div>
+    <div class="setting-container">
+      <label for="secondary">Background color:</label>
+      <input type="color" id="secondary" name="secondary" [(ngModel)]="secondaryColor" [value]="secondaryColor">
+    </div>
+    <div class="setting-container">
+      <label for="tertiary">Tile and navigation color:</label>
+      <input type="color" id="tertiary" name="tertiary" [(ngModel)]="tertiaryColor" [value]="tertiaryColor">
+    </div>
+    <button id="apply" (click)="apply()"
+            [ngStyle]="{'background-color':userSettings.secondaryColor,'color':userSettings.primaryColor}">
+      Apply
+    </button>
+  </div>
+</div>

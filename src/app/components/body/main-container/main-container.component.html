@@ -1,0 +1,7 @@
+<div class="wrapper">
+  <div class="main-container" [ngStyle]="{'color':userSettings.primaryColor,
+  'background-color':userSettings.secondaryColor}">
+    <app-top-bar [user]="user" [userSettings]="userSettings"></app-top-bar>
+    <router-outlet></router-outlet>
+  </div>
+</div>
