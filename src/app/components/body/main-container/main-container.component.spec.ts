@@ -5,6 +5,7 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {TopBarComponent} from "../top-bar/top-bar.component";
 import {GoogleApiService, UserInformation} from "../../../services/google-api.service";
 import {DateTimeProvider, OAuthLogger, OAuthService, UrlHelperService} from "angular-oauth2-oidc";
+import {SettingsModelBuilder} from "../../../settings/SettingsModel";
 
 describe('MainContainerComponent', () => {
   let component: MainContainerComponent;
@@ -31,6 +32,7 @@ describe('MainContainerComponent', () => {
         picture: "https://www.example.com/"
       }
     } as UserInformation;
+    component.userSettings = SettingsModelBuilder.getDefault();
     fixture.detectChanges();
   });
 
