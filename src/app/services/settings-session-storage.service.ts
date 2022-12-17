@@ -24,7 +24,7 @@ export class SettingsSessionStorageService {
         return SettingsModelBuilder.getDefault();
       }
 
-      return parsedValue as SettingsModel;
+      return parsedValue;
     } catch {
       return SettingsModelBuilder.getDefault();
     }
