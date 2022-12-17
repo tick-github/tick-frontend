@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {UserInformation} from "../../../services/google-api.service";
 import {SettingsModel, SettingsModelBuilder} from "../../../settings/SettingsModel";
 import {SettingsSessionStorageService} from "../../../services/settings-session-storage.service";
@@ -10,7 +10,7 @@ import {SettingsApiService} from "../../../services/settings-api.service";
   templateUrl: './main-container.component.html',
   styleUrls: ['./main-container.component.scss']
 })
-export class MainContainerComponent implements OnInit, OnChanges {
+export class MainContainerComponent {
 
   @Input() user!: UserInformation;
   userSettings!: SettingsModel;
@@ -24,11 +24,5 @@ export class MainContainerComponent implements OnInit, OnChanges {
       () => {retry(5);}
     ).catch(() => {this.userSettings = SettingsModelBuilder.getDefault()})
       .then(() => {settingsSessionStorage.setSettings(this.userSettings)})
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngOnChanges() : void {
   }
 }

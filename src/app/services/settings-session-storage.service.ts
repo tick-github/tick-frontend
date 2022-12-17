@@ -6,11 +6,13 @@ import {SettingsModel, SettingsModelBuilder} from "../settings/SettingsModel";
 })
 export class SettingsSessionStorageService {
 
-  constructor() {  }
+  constructor() {
+    // this is intentional
+  }
   private readonly SETTINGS_KEY: string = "tick_settings";
 
   getSettings() : SettingsModel {
-    const storedSettings = sessionStorage.getItem(this.SETTINGS_KEY) as string | null;
+    const storedSettings = sessionStorage.getItem(this.SETTINGS_KEY);
     if (storedSettings == null) {
       return SettingsModelBuilder.getDefault();
     }
@@ -21,13 +23,9 @@ export class SettingsSessionStorageService {
   setSettings(settings: SettingsModel) {
     const settingsToBeStored = JSON.stringify(settings);
     sessionStorage.setItem(this.SETTINGS_KEY, settingsToBeStored);
-
-    return;
   }
 
   clearSettings() {
     sessionStorage.removeItem(this.SETTINGS_KEY);
-
-    return;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {SettingsSessionStorageService} from "../../../services/settings-session-storage.service";
 import {SettingsModel} from "../../../settings/SettingsModel";
 
@@ -7,7 +7,7 @@ import {SettingsModel} from "../../../settings/SettingsModel";
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.scss']
 })
-export class TileComponent implements OnInit {
+export class TileComponent {
 
   userSettings: SettingsModel;
 
@@ -16,8 +16,4 @@ export class TileComponent implements OnInit {
   ) {
     this.userSettings = settingsSessionStorage.getSettings();
   }
-
-  ngOnInit(): void {
-  }
-
 }

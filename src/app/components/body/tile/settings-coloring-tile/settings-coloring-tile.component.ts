@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {TileComponent} from "../tile.component";
 import {SettingsSessionStorageService} from "../../../../services/settings-session-storage.service";
 import {SettingsApiService} from "../../../../services/settings-api.service";
@@ -9,7 +9,7 @@ import {SettingsModel, SettingsModelBuilder} from "../../../../settings/Settings
   templateUrl: './settings-coloring-tile.component.html',
   styleUrls: ['../tile.component.scss', './settings-coloring-tile.component.scss']
 })
-export class SettingsColoringTileComponent extends TileComponent implements OnInit {
+export class SettingsColoringTileComponent extends TileComponent {
   constructor(
     settingsSessionStorage : SettingsSessionStorageService,
     private readonly settingsApi : SettingsApiService
