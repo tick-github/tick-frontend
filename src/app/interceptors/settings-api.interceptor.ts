@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class SettingsApiInterceptor implements HttpInterceptor {
@@ -13,7 +13,7 @@ export class SettingsApiInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     // gateway url for settings api
-    const urls : string[] = [
+    const urls: string[] = [
       "http://localhost:8000/api/v1/settings"
     ];
 
@@ -21,7 +21,7 @@ export class SettingsApiInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-    const idToken : string = this.getIdTokenFromSessionStorage();
+    const idToken: string = this.getIdTokenFromSessionStorage();
 
     if (idToken == null || idToken == "") {
       return next.handle(request);
@@ -35,11 +35,11 @@ export class SettingsApiInterceptor implements HttpInterceptor {
     return next.handle(modifiedRequest);
   }
 
-  private getIdTokenFromSessionStorage() : string {
+  private getIdTokenFromSessionStorage(): string {
     return sessionStorage.getItem("id_token") ?? "" as string;
   }
 
-  private startsWithAnyOf(stringToCheck: string, substrings: string[]) : boolean {
+  private startsWithAnyOf(stringToCheck: string, substrings: string[]): boolean {
     return substrings.some(substring => stringToCheck.startsWith(substring));
   }
 }

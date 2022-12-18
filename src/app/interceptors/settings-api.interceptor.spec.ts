@@ -1,13 +1,12 @@
 import {inject, TestBed} from '@angular/core/testing';
-
-import { SettingsApiInterceptor } from './settings-api.interceptor';
+import {SettingsApiInterceptor} from './settings-api.interceptor';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
 
 
 describe('SettingsApiInterceptor', () => {
 
-  const testIdToken : string = "TEST_ID";
+  const testIdToken: string = "TEST_ID";
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -38,9 +37,9 @@ describe('SettingsApiInterceptor', () => {
         expect(token).toEqual(testIdToken);
 
         // Cleanup
-        request.flush({data:'test'});
+        request.flush({data: 'test'});
 
-    }))
+      }))
 
     it('should not add the auth header to non-api requests', inject([HttpClient, HttpTestingController],
       (http: HttpClient, mock: HttpTestingController) => {
@@ -51,7 +50,7 @@ describe('SettingsApiInterceptor', () => {
         const request = mock.expectOne(req => (!req.headers.has('Authorization')));
 
         // Cleanup
-        request.flush({data:'test'});
+        request.flush({data: 'test'});
       }))
   })
 
