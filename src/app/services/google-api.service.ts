@@ -2,16 +2,16 @@ import {Injectable} from '@angular/core';
 import {AuthConfig, OAuthService} from "angular-oauth2-oidc";
 import {lastValueFrom, Observable, Subject} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {EmailMessage} from "../gmail/EmailMessage";
-import {GmailMessageIdResponse} from "../gmail/GmailMessageIdResponse";
-import {GmailSingleMessageResponse} from "../gmail/GmailSingleMessageResponse";
+import {EmailMessage} from "../models/gmail/EmailMessage";
+import {GmailMessageIdResponse} from "../models/gmail/GmailMessageIdResponse";
+import {GmailSingleMessageResponse} from "../models/gmail/GmailSingleMessageResponse";
 
 const oAuthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
   strictDiscoveryDocumentValidation: false,
   redirectUri: window.location.origin,
   clientId: '170594238961-vtcn3409ueg7lje60uc2he33v5qk3mou.apps.googleusercontent.com',
-  scope: 'openid profile email https://www.googleapis.com/auth/gmail.readonly',
+  scope: 'openid profile'/* email https://www.googleapis.com/auth/gmail.readonly'*/,
   logoutUrl: 'http://localhost:4200'
 }
 

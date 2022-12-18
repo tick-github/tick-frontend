@@ -3,15 +3,15 @@ import {HttpClientTestingModule, HttpTestingController} from "@angular/common/ht
 import {OAuthService} from "angular-oauth2-oidc";
 import {GoogleApiService, UserInformation} from "./google-api.service";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {GmailMessageIdPair, GmailMessageIdResponse} from "../gmail/GmailMessageIdResponse";
+import {GmailMessageIdPair, GmailMessageIdResponse} from "../models/gmail/GmailMessageIdResponse";
 import {of} from "rxjs";
 import {
   GmailMessageBody,
   GmailMessageHeader,
   GmailMessagePayload,
   GmailSingleMessageResponse
-} from "../gmail/GmailSingleMessageResponse";
-import {EmailMessage} from "../gmail/EmailMessage";
+} from "../models/gmail/GmailSingleMessageResponse";
+import {EmailMessage} from "../models/gmail/EmailMessage";
 
 class MockAuthService {
   hasValidAccessToken() {
