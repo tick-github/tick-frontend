@@ -2,7 +2,6 @@ import {Component, Input} from '@angular/core';
 import {UserInformation} from "../../../services/google-api.service";
 import {SettingsModel, SettingsModelBuilder} from "../../../models/settings/SettingsModel";
 import {SettingsSessionStorageService} from "../../../services/settings-session-storage.service";
-import {retry} from "rxjs";
 import {SettingsApiService} from "../../../services/settings-api.service";
 
 @Component({
@@ -20,9 +19,19 @@ export class MainContainerComponent {
     private readonly settingsSessionStorage: SettingsSessionStorageService
   ) {
     settingsApi.getSettings().then(
-      (successfulResponse) => {this.userSettings = successfulResponse.data as SettingsModel},
-      () => {retry(5);}
-    ).catch(() => {this.userSettings = SettingsModelBuilder.getDefault()})
-      .then(() => {settingsSessionStorage.setSettings(this.userSettings)})
+      (successfulResponse) => {
+        this.userSettings = successfulResponse.data as SettingsModel
+      }, (/* on rejected try and create a new settings entry */) => {
+        settingsApi.createSettings(SettingsModelBuilder.getDefault()).then(
+          (successfulResponse) => {
+            this.userSettings = successfulResponse.data as SettingsModel
+          }, (/* on rejected default to default */) => {
+            this.userSettings = SettingsModelBuilder.getDefault();
+          }
+        )
+      }
+    ).finally(() => {
+      settingsSessionStorage.setSettings(this.userSettings)
+    });
   }
 }
