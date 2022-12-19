@@ -5,7 +5,7 @@ import {SettingsModel} from "./models/settings/SettingsModel";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: []
 })
 export class AppComponent {
   title = 'tick-frontend';

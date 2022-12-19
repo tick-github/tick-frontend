@@ -1,6 +1,6 @@
 import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
-import { SettingsColoringTileComponent } from './settings-coloring-tile.component';
+import {SettingsColoringTileComponent} from './settings-coloring-tile.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {SettingsSessionStorageService} from "../../../../services/settings-session-storage.service";
 import {SettingsApiService} from "../../../../services/settings-api.service";
@@ -10,7 +10,7 @@ import {InjectionToken} from "@angular/core";
 import createSpy = jasmine.createSpy;
 
 export const WINDOW = new InjectionToken('Window');
-const windowMock = { location: { reload: createSpy('reload')}};
+const windowMock = {location: {reload: createSpy('reload')}};
 
 describe('SettingsColoringTileComponent', () => {
   let component: SettingsColoringTileComponent;
@@ -20,20 +20,21 @@ describe('SettingsColoringTileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SettingsColoringTileComponent ],
+      declarations: [SettingsColoringTileComponent],
       imports: [HttpClientTestingModule],
       providers: [
         {provide: WINDOW, useValue: windowMock}
       ]
     })
-    .compileComponents();
+      .compileComponents();
 
     sessionStorageService = TestBed.inject(SettingsSessionStorageService);
     apiService = TestBed.inject(SettingsApiService);
     fixture = TestBed.createComponent(SettingsColoringTileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    component.reloadPage = () => {}; // disable full page reload
+    component.reloadPage = () => {
+    }; // disable full page reload
   });
 
   describe('apply', () => {

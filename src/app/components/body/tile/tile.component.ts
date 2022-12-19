@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {SettingsSessionStorageService} from "../../../services/settings-session-storage.service";
 import {SettingsModel} from "../../../models/settings/SettingsModel";
 

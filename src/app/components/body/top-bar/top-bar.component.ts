@@ -10,7 +10,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent {
-
   @Input() user!: UserInformation;
   @Input() userSettings!: SettingsModel;
 
@@ -29,5 +28,4 @@ export class TopBarComponent {
     this.settingsSessionStorage.clearSettings();
     this.googleApi.signOut();
   }
-
 }
